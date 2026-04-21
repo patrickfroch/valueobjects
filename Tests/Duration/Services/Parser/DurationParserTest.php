@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       12.03.2024 - 12:54
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
  * @license     LGPL
  */
@@ -84,11 +86,11 @@ class DurationParserTest extends EsitTestCase
                            ->disableOriginalConstructor()
                            ->getMock();
 
-        $value->expects(self::once())
+        $value->expects($this->once())
               ->method('isNegativ')
               ->willReturn(false);
 
-        $value->expects(self::exactly(9))
+        $value->expects($this->exactly(9))
               ->method('value')
               ->willReturn($time);
 
@@ -97,11 +99,11 @@ class DurationParserTest extends EsitTestCase
             'parseToken',
             [$time, $time, $time, $time, $time, $time, $time, $time, $time],
             [
-                //[DurationFormatParts::Y, $time],
-                //[DurationFormatParts::M, $time],
-                //[DurationFormatParts::m, $time],
+                // [DurationFormatParts::Y, $time],
+                // [DurationFormatParts::M, $time],
+                // [DurationFormatParts::m, $time],
                 [DurationFormatParts::W, $time],
-                //[DurationFormatParts::w, $time],
+                // [DurationFormatParts::w, $time],
                 [DurationFormatParts::D, $time],
                 [DurationFormatParts::d, $time],
                 [DurationFormatParts::H, $time],

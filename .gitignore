@@ -11,3 +11,5 @@
 autoload*
 vendor/
 **/**/*.example
+composer.lock
+.phpversion

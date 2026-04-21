@@ -1,13 +1,20 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * @package     valueobjects
  * @version     1.0.0
+ *
  * @since       19.09.22 - 13:40
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
+
 namespace Esit\Valueobjects\Tests\Iban\Services\Validators;
 
 use Esit\Valueobjects\Classes\Iban\Exceptions\NotAValidIbanException;
@@ -28,49 +35,49 @@ class IbanValidatorTest extends TestCase
 
     public function testIsValidReturnTrueIfIbanIsValidWithoutSpaces(): void
     {
-        self::assertTrue($this->validator->isValid('DE79345678901234567890'));
+        $this->assertTrue($this->validator->isValid('DE79345678901234567890'));
     }
 
 
     public function testIsValidReturnFalseIfIbanHasSpaces(): void
     {
-        self::assertFalse($this->validator->isValid('DE79 3456 7890 1234 5678 90'));
+        $this->assertFalse($this->validator->isValid('DE79 3456 7890 1234 5678 90'));
     }
 
 
     public function testIsValidReturnFalseIfIbanHasNoCounty(): void
     {
-        self::assertFalse($this->validator->isValid('9012345678901234567890'));
+        $this->assertFalse($this->validator->isValid('9012345678901234567890'));
     }
 
 
     public function testIsValidReturnFalseIfIbanHasNoNumbers(): void
     {
-        self::assertFalse($this->validator->isValid('testTESTtestTETStestTEST'));
+        $this->assertFalse($this->validator->isValid('testTESTtestTETStestTEST'));
     }
 
 
     public function testIsValidChecksumReturnTrueIfChecksumIsValid(): void
     {
-        self::assertTrue($this->validator->isValidChecksum('DE79345678901234567890'));
+        $this->assertTrue($this->validator->isValidChecksum('DE79345678901234567890'));
     }
 
 
     public function testIsValidChecksumReturnFalseIfChecksumIsNotValid(): void
     {
-        self::assertFalse($this->validator->isValidChecksum('DE12345678901234567890'));
+        $this->assertFalse($this->validator->isValidChecksum('DE12345678901234567890'));
     }
 
 
     public function testGetChecksumReturnCecksum(): void
     {
-        self::assertSame(79, $this->validator->getChecksum('DE79345678901234567890'));
+        $this->assertSame(79, $this->validator->getChecksum('DE79345678901234567890'));
     }
 
 
     public function testGetCountryCodeReturnInteger(): void
     {
-        self::assertSame(1314, $this->validator->getCountryCode('DE79345678901234567890'));
+        $this->assertSame(1314, $this->validator->getCountryCode('DE79345678901234567890'));
     }
 
 

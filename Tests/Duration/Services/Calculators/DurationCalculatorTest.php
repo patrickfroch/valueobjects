@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       11.03.2024 - 15:13
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
  * @license     LGPL
  */

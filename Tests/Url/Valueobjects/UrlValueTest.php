@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       08.08.2022 - 14:10
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -33,44 +35,44 @@ class UrlValueTest extends TestCase
     {
         $this->expectException(NotAValidUrlException::class);
         $this->expectExceptionMessage('string is not a valid url');
-        $this->validator->expects(self::once())->method('isValid')->with('-htps:/-example')->willReturn(false);
+        $this->validator->expects($this->once())->method('isValid')->with('-htps:/-example')->willReturn(false);
         UrlValue::fromString('-htps:/-example', $this->validator);
     }
 
 
     public function testFromStringReturnObjectIfUrlIsValid(): void
     {
-        $this->validator->expects(self::once())->method('isValid')->with('example.com')->willReturn(true);
-        self::assertNotNull(UrlValue::fromString('example.com', $this->validator));
+        $this->validator->expects($this->once())->method('isValid')->with('example.com')->willReturn(true);
+        $this->assertNotNull(UrlValue::fromString('example.com', $this->validator));
     }
 
 
     public function testFromStringReturnObjectIfUrlIsValidWithForceSchema(): void
     {
-        $this->validator->expects(self::once())->method('isValid')->with('https://example.com')->willReturn(true);
-        self::assertNotNull(UrlValue::fromString('https://example.com', $this->validator, true));
+        $this->validator->expects($this->once())->method('isValid')->with('https://example.com')->willReturn(true);
+        $this->assertNotNull(UrlValue::fromString('https://example.com', $this->validator, true));
     }
 
 
     public function testFromStringReturnObjectIfUrlIsValidAndIndividualSchemaiIsSet(): void
     {
-        $this->validator->expects(self::once())->method('isValid')->with('dav://example.com')->willReturn(true);
-        self::assertNotNull(UrlValue::fromString('dav://example.com', $this->validator, true, 'dav'));
+        $this->validator->expects($this->once())->method('isValid')->with('dav://example.com')->willReturn(true);
+        $this->assertNotNull(UrlValue::fromString('dav://example.com', $this->validator, true, 'dav'));
     }
 
 
     public function testValueReturnValue(): void
     {
-        $this->validator->expects(self::once())->method('isValid')->with('https://example.com')->willReturn(true);
+        $this->validator->expects($this->once())->method('isValid')->with('https://example.com')->willReturn(true);
         $url = UrlValue::fromString('https://example.com', $this->validator);
-        self::assertSame('https://example.com', $url->value());
+        $this->assertSame('https://example.com', $url->value());
     }
 
 
     public function testToStringReturnValue(): void
     {
-        $this->validator->expects(self::once())->method('isValid')->with('https://example.com')->willReturn(true);
+        $this->validator->expects($this->once())->method('isValid')->with('https://example.com')->willReturn(true);
         $url = UrlValue::fromString('https://example.com', $this->validator);
-        self::assertSame('https://example.com', (string)$url);
+        $this->assertSame('https://example.com', (string) $url);
     }
 }

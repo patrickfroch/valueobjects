@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       12.03.2024 - 14:06
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
  * @license     LGPL
  */
@@ -76,7 +78,7 @@ class DurationConverterTest extends EsitTestCase
             ]
         );
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('divide')
                          ->with($timeOfMinutes, $conversionFactor)
                          ->willReturn($expected);
@@ -95,17 +97,17 @@ class DurationConverterTest extends EsitTestCase
         $conversionFactor   = ConversionFactors::SECONDS_PER_MINUTE;
         $expected           = (int) ($secOfUnit / $conversionFactor);
 
-            $this->calculator->expects(self::once())
-                         ->method('modulo')
-                         ->with($time, $conversionFactor)
-                         ->willReturn($rest);
+        $this->calculator->expects($this->once())
+                     ->method('modulo')
+                     ->with($time, $conversionFactor)
+                     ->willReturn($rest);
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('subtract')
                          ->with($time, $rest)
                          ->willReturn($secOfUnit);
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('divide')
                          ->with($secOfUnit, $conversionFactor)
                          ->willReturn($expected);
@@ -123,12 +125,12 @@ class DurationConverterTest extends EsitTestCase
         $expected           = $time - $rest;
         $conversionFactor   = ConversionFactors::SECONDS_PER_MINUTE;
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('modulo')
                          ->with($time, $conversionFactor)
                          ->willReturn($rest);
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('subtract')
                          ->with($time, $rest)
                          ->willReturn($expected);
@@ -145,7 +147,7 @@ class DurationConverterTest extends EsitTestCase
         $conversionFactor   = ConversionFactors::SECONDS_PER_MINUTE;
         $expected           = 5;
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('modulo')
                          ->with($time, $conversionFactor)
                          ->willReturn($expected);

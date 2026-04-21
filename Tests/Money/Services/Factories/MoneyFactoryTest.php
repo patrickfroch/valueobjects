@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       31.07.2022 - 18:35
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -52,38 +54,38 @@ final class MoneyFactoryTest extends TestCase
 
     public function testCreateFromIntReturnAnObject(): void
     {
-        self::assertNotNull($this->factory->createFromInt(12, 3));
+        $this->assertNotNull($this->factory->createFromInt(12, 3));
     }
 
 
     public function testCreateFromStringReturnAnObjectWithDefaultSettings(): void
     {
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidString')
                         ->with('12.345,67', '.', ',', 2)
                         ->willReturn(true);
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertStringToInt')
                         ->with('12.345,67', '.', ',')
                         ->willReturn(1234567);
 
-        self::assertNotNull($this->factory->createFromString('12.345,67'));
+        $this->assertNotNull($this->factory->createFromString('12.345,67'));
     }
 
 
     public function testCreateFromStringReturnAnObjectWithIndividualSettings(): void
     {
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidString')
                         ->with('12.345,678', '|', '-', 3)
                         ->willReturn(true);
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertStringToInt')
                         ->with('12.345,678', '|', '-')
                         ->willReturn(12345678);
 
-        self::assertNotNull($this->factory->createFromString('12.345,678', '|', '-', 3));
+        $this->assertNotNull($this->factory->createFromString('12.345,678', '|', '-', 3));
     }
 }

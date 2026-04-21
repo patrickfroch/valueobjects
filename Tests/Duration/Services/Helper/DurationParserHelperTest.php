@@ -1,12 +1,13 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       19.03.2024 - 13:34
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
- * @license     EULA
  */
 
 declare(strict_types=1);
@@ -60,7 +61,7 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertRestSeconds(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getSconds')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -71,7 +72,7 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertTotalMinutes(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getTotalMinutes')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -82,7 +83,7 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertRestMinutes(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getMinutesCount')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -93,7 +94,7 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertTotalHours(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getTotalHours')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -104,7 +105,7 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertRestHours(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getHoursCount')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -115,7 +116,7 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertTotalDays(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getTotalDays')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -126,7 +127,7 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertRestDays(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getDaysCount')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -137,7 +138,7 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertTotalWeeks(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getTotalWeeks')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -148,8 +149,8 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertRestWeeks(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
-        $this->converter->expects(self::once())
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->converter->expects($this->once())
                         ->method('getWeeksCount')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -160,8 +161,8 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertTotalMonths(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
-        $this->converter->expects(self::once())
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->converter->expects($this->once())
                         ->method('getTotalMonths')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -172,8 +173,8 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertRestMonths(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
-        $this->converter->expects(self::once())
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->converter->expects($this->once())
                         ->method('getMonthsCount')
                         ->with($this->time)
                         ->willReturn($this->time);
@@ -184,8 +185,8 @@ class DurationParserHelperTest extends TestCase
 
     public function testParseTokenConvertTotalYear(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
-        $this->converter->expects(self::once())
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->converter->expects($this->once())
                         ->method('getTotalYears')
                         ->with($this->time)
                         ->willReturn($this->time);

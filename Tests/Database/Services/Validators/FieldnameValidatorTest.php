@@ -2,10 +2,12 @@
 
 /**
  * @since       08.09.2024 - 16:57
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
- * @license     EULA
  */
 
 declare(strict_types=1);
@@ -81,6 +83,7 @@ class FieldnameValidatorTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testValidateReturnFalseIfNameIsNotFount(): void
@@ -88,12 +91,12 @@ class FieldnameValidatorTest extends TestCase
         $fieldname   = 'example_field';
         $fields      = [$this->column, $this->column];
 
-        $this->schemeManager->expects(self::once())
+        $this->schemeManager->expects($this->once())
                             ->method('listTableColumns')
                             ->with('tl_table')
                             ->willReturn($fields);
 
-        $this->column->expects(self::exactly(\count($fields)))
+        $this->column->expects($this->exactly(\count($fields)))
                      ->method('getName')
                      ->willReturnOnConsecutiveCalls(
                          'test_field',
@@ -106,6 +109,7 @@ class FieldnameValidatorTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testValidateReturnTrueIfNameIsFount(): void
@@ -113,12 +117,12 @@ class FieldnameValidatorTest extends TestCase
         $fieldname   = 'example_field';
         $fields      = [$this->column, $this->column];
 
-        $this->schemeManager->expects(self::once())
+        $this->schemeManager->expects($this->once())
                             ->method('listTableColumns')
                             ->with('tl_table')
                             ->willReturn($fields);
 
-        $this->column->expects(self::exactly(\count($fields)))
+        $this->column->expects($this->exactly(\count($fields)))
                      ->method('getName')
                      ->willReturnOnConsecutiveCalls(
                          'test_field',

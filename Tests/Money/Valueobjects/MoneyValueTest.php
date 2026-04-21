@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       31.07.2022 - 12:58
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -59,72 +61,72 @@ final class MoneyValueTest extends TestCase
     public function testGetDecimalPlaces(): void
     {
         $money = MoneyValue::fromInt(0, $this->converter, $this->calculator, 3);
-        self::assertSame(3, $money->getDecimalPlaces());
+        $this->assertSame(3, $money->getDecimalPlaces());
     }
 
 
     public function testFromStringThrowExceptionIFStringIsNoValidMoneyString(): void
     {
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidString')
                         ->with('0-0', '.', ',')
                         ->willReturn(false);
 
-        $this->converter->expects(self::never())
+        $this->converter->expects($this->never())
                         ->method('convertStringToInt');
 
         $this->expectException(NotAValidMoneyStringException::class);
         $this->expectExceptionMessage('Value is no Valid money string');
         $money = MoneyValue::fromString('0-0', $this->converter, $this->validator, $this->calculator);
-        self::assertNotNull($money);
+        $this->assertNotNull($money);
     }
 
 
     public function testFromStringReturnMoneyObjectWithDefaultSettings(): void
     {
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidString')
                         ->with('0,00', '.', ',')
                         ->willReturn(true);
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertStringToInt')
                         ->with('0,00', '.', ',')
                         ->willReturn(0);
 
         $money = MoneyValue::fromString('0,00', $this->converter, $this->validator, $this->calculator);
-        self::assertNotNull($money);
+        $this->assertNotNull($money);
     }
 
 
     public function testFromStringReturnMoneyObjectWithIndividualSettings(): void
     {
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidString')
                         ->with('0,000', '|', '-')
                         ->willReturn(true);
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertStringToInt')
                         ->with('0,000', '|', '-')
                         ->willReturn(0);
 
         $money = MoneyValue::fromString('0,000', $this->converter, $this->validator, $this->calculator, '|', '-', 3);
-        self::assertNotNull($money);
+        $this->assertNotNull($money);
     }
 
 
     public function testFromIntReturnObject(): void
     {
         $money = MoneyValue::fromInt(0, $this->converter, $this->calculator, 3);
-        self::assertNotNull($money);
+        $this->assertNotNull($money);
     }
 
 
     public function testValueReturnInteger(): void
     {
         $money = MoneyValue::fromInt(12, $this->converter, $this->calculator);
-        self::assertSame(12, $money->value());
+        $this->assertSame(12, $money->value());
     }
 
 
@@ -132,12 +134,12 @@ final class MoneyValueTest extends TestCase
     {
         $money = MoneyValue::fromInt(1200000, $this->converter, $this->calculator);
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertIntToString')
                         ->with(1200000, '.', ',')
                         ->willReturn('12.000,00');
 
-        self::assertSame('12.000,00', (string)$money);
+        $this->assertSame('12.000,00', (string) $money);
     }
 
 
@@ -145,12 +147,12 @@ final class MoneyValueTest extends TestCase
     {
         $money = MoneyValue::fromInt(1200000, $this->converter, $this->calculator);
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertIntToString')
                         ->with(1200000, '.', ',')
                         ->willReturn('12.000,00');
 
-        self::assertSame('12.000,00', $money->formatedValue());
+        $this->assertSame('12.000,00', $money->formatedValue());
     }
 
 
@@ -158,12 +160,12 @@ final class MoneyValueTest extends TestCase
     {
         $money = MoneyValue::fromInt(1200000, $this->converter, $this->calculator);
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertIntToString')
                         ->with(1200000, '-', ',')
                         ->willReturn('12-000,00');
 
-        self::assertSame('12-000,00', $money->formatedValue('-'));
+        $this->assertSame('12-000,00', $money->formatedValue('-'));
     }
 
 
@@ -171,12 +173,12 @@ final class MoneyValueTest extends TestCase
     {
         $money = MoneyValue::fromInt(1200000, $this->converter, $this->calculator);
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertIntToString')
                         ->with(1200000, '.', '/')
                         ->willReturn('12.000/00');
 
-        self::assertSame('12.000/00', $money->formatedValue('.', '/'));
+        $this->assertSame('12.000/00', $money->formatedValue('.', '/'));
     }
 
 
@@ -185,14 +187,14 @@ final class MoneyValueTest extends TestCase
         $money      = MoneyValue::fromInt(12, $this->converter, $this->calculator);
         $moneyTwo   = MoneyValue::fromInt(24, $this->converter, $this->calculator);
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('add')
                          ->with($money, $moneyTwo)
                          ->willReturn(36);
 
         $rtn = $money->add($moneyTwo);
-        self::assertSame(12, $money->value());
-        self::assertSame(36, $rtn->value());
+        $this->assertSame(12, $money->value());
+        $this->assertSame(36, $rtn->value());
     }
 
 
@@ -201,15 +203,15 @@ final class MoneyValueTest extends TestCase
         $moneyOne   = MoneyValue::fromInt(36, $this->converter, $this->calculator);
         $moneyTwo   = MoneyValue::fromInt(24, $this->converter, $this->calculator);
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('substract')
                          ->with($moneyOne, $moneyTwo)
                          ->willReturn(12);
 
         $rtn = $moneyOne->substract($moneyTwo);
-        self::assertSame(36, $moneyOne->value());
-        self::assertSame(24, $moneyTwo->value());
-        self::assertSame(12, $rtn->value());
+        $this->assertSame(36, $moneyOne->value());
+        $this->assertSame(24, $moneyTwo->value());
+        $this->assertSame(12, $rtn->value());
     }
 
 
@@ -217,14 +219,14 @@ final class MoneyValueTest extends TestCase
     {
         $money = MoneyValue::fromInt(12, $this->converter, $this->calculator);
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('multiply')
                          ->with($money, 3)
                          ->willReturn(36);
 
         $rtn = $money->multiply(3);
-        self::assertSame(12, $money->value());
-        self::assertSame(36, $rtn->value());
+        $this->assertSame(12, $money->value());
+        $this->assertSame(36, $rtn->value());
     }
 
 
@@ -232,13 +234,13 @@ final class MoneyValueTest extends TestCase
     {
         $money = MoneyValue::fromInt(36, $this->converter, $this->calculator);
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('divide')
                          ->with($money, 3)
                          ->willReturn(12);
 
         $rtn = $money->divide(3);
-        self::assertSame(36, $money->value());
-        self::assertSame(12, $rtn->value());
+        $this->assertSame(36, $money->value());
+        $this->assertSame(12, $rtn->value());
     }
 }

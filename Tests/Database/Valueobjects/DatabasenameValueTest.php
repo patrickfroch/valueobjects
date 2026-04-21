@@ -2,10 +2,12 @@
 
 /**
  * @since       08.09.2024 - 09:32
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
- * @license     EULA
  */
 
 declare(strict_types=1);
@@ -41,13 +43,14 @@ class DatabasenameValueTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
-    public function test__toString(): void
+    public function testToString(): void
     {
         $value = 'valid_databasename';
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('validate')
                         ->with($value)
                         ->willReturn(true);
@@ -59,13 +62,14 @@ class DatabasenameValueTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testFromStringThrowExceptionIfValueIsNotValid(): void
     {
         $value = 'not_valid_databasename';
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('validate')
                         ->with($value)
                         ->willReturn(false);
@@ -79,13 +83,14 @@ class DatabasenameValueTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testFromStringReturnDatabasenameValueIfValueIsValid(): void
     {
         $value = 'valid_databasename';
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('validate')
                         ->with($value)
                         ->willReturn(true);
@@ -97,13 +102,14 @@ class DatabasenameValueTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testValue(): void
     {
         $value = 'valid_databasename';
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('validate')
                         ->with($value)
                         ->willReturn(true);

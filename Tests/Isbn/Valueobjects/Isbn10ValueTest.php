@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       06.08.2022 - 10:08
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -41,16 +43,16 @@ class Isbn10ValueTest extends TestCase
 
     public function testFromStringReturnObjectIfValueIsValid(): void
     {
-        $this->validator->expects(self::once())->method('isValidIsbn10')->with($this->value)->willReturn(true);
-        $this->validator->expects(self::once())->method('validateCheckSum10')->with($this->value)->willReturn(true);
-        self::assertNotNull(Isbn10Value::fromString($this->value, $this->validator));
+        $this->validator->expects($this->once())->method('isValidIsbn10')->with($this->value)->willReturn(true);
+        $this->validator->expects($this->once())->method('validateCheckSum10')->with($this->value)->willReturn(true);
+        $this->assertNotNull(Isbn10Value::fromString($this->value, $this->validator));
     }
 
 
     public function testFromStringThrowExceptionIfValueIsNoIsbn10(): void
     {
-        $this->validator->expects(self::once())->method('isValidIsbn10')->with($this->value)->willReturn(false);
-        $this->validator->expects(self::never())->method('validateCheckSum10');
+        $this->validator->expects($this->once())->method('isValidIsbn10')->with($this->value)->willReturn(false);
+        $this->validator->expects($this->never())->method('validateCheckSum10');
         $this->expectException(NotAValidIsbnStringException::class);
         $this->expectExceptionMessage('string is no valid isbn10');
         Isbn10Value::fromString($this->value, $this->validator);
@@ -59,28 +61,28 @@ class Isbn10ValueTest extends TestCase
 
     public function testFromStringReturnObjectIfChecksumIsWrond(): void
     {
-        $this->validator->expects(self::once())->method('isValidIsbn10')->with($this->value)->willReturn(true);
-        $this->validator->expects(self::once())->method('validateCheckSum10')->with($this->value)->willReturn(false);
+        $this->validator->expects($this->once())->method('isValidIsbn10')->with($this->value)->willReturn(true);
+        $this->validator->expects($this->once())->method('validateCheckSum10')->with($this->value)->willReturn(false);
         $this->expectException(NotAValidIsbnStringException::class);
         $this->expectExceptionMessage('string is no valid isbn10');
-        self::assertNotNull(Isbn10Value::fromString($this->value, $this->validator));
+        $this->assertNotNull(Isbn10Value::fromString($this->value, $this->validator));
     }
 
 
     public function testValueReturnValue(): void
     {
-        $this->validator->expects(self::once())->method('isValidIsbn10')->with($this->value)->willReturn(true);
-        $this->validator->expects(self::once())->method('validateCheckSum10')->with($this->value)->willReturn(true);
+        $this->validator->expects($this->once())->method('isValidIsbn10')->with($this->value)->willReturn(true);
+        $this->validator->expects($this->once())->method('validateCheckSum10')->with($this->value)->willReturn(true);
         $isbn = Isbn10Value::fromString($this->value, $this->validator);
-        self::assertSame($this->value, $isbn->value());
+        $this->assertSame($this->value, $isbn->value());
     }
 
 
     public function testToStringReturnValue(): void
     {
-        $this->validator->expects(self::once())->method('isValidIsbn10')->with($this->value)->willReturn(true);
-        $this->validator->expects(self::once())->method('validateCheckSum10')->with($this->value)->willReturn(true);
+        $this->validator->expects($this->once())->method('isValidIsbn10')->with($this->value)->willReturn(true);
+        $this->validator->expects($this->once())->method('validateCheckSum10')->with($this->value)->willReturn(true);
         $isbn = Isbn10Value::fromString($this->value, $this->validator);
-        self::assertSame($this->value, (string)$isbn);
+        $this->assertSame($this->value, (string) $isbn);
     }
 }
