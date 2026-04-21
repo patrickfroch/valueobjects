@@ -1,12 +1,13 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       19.03.2024 - 13:45
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
- * @license     EULA
  */
 
 declare(strict_types=1);
@@ -65,8 +66,8 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetTotalYears(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
-        $this->converter->expects(self::once())
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->converter->expects($this->once())
                         ->method('getTotalAmountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_YEAR)
                         ->willReturn($this->time);
@@ -76,8 +77,8 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetMonthsCount(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
-        $this->converter->expects(self::once())
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->converter->expects($this->once())
                         ->method('getCountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_MONTH, ConversionFactors::SECONDS_PER_YEAR)
                         ->willReturn($this->time);
@@ -87,8 +88,8 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetTotalMonths(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
-        $this->converter->expects(self::once())
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->converter->expects($this->once())
                         ->method('getTotalAmountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_MONTH)
                         ->willReturn($this->time);
@@ -98,8 +99,8 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetWeeksCount(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
-        $this->converter->expects(self::once())
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->converter->expects($this->once())
                         ->method('getCountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_WEEK, ConversionFactors::SECONDS_PER_MONTH)
                         ->willReturn($this->time);
@@ -109,7 +110,7 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetTotalWeeks(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getTotalAmountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_WEEK)
                         ->willReturn($this->time);
@@ -119,7 +120,7 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetDaysCount(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getCountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_DAY, ConversionFactors::SECONDS_PER_WEEK)
                         ->willReturn($this->time);
@@ -129,7 +130,7 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetTotalDays(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getTotalAmountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_DAY)
                         ->willReturn($this->time);
@@ -139,7 +140,7 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetHoursCount(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getCountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_HOUR, ConversionFactors::SECONDS_PER_DAY)
                         ->willReturn($this->time);
@@ -149,7 +150,7 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetTotalHours(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getTotalAmountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_HOUR)
                         ->willReturn($this->time);
@@ -159,7 +160,7 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetMinutesCount(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getCountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_MINUTE, ConversionFactors::SECONDS_PER_HOUR)
                         ->willReturn($this->time);
@@ -169,7 +170,7 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetTotalMinutes(): void
     {
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('getTotalAmountOfUnit')
                         ->with($this->time, ConversionFactors::SECONDS_PER_MINUTE)
                         ->willReturn($this->time);
@@ -179,7 +180,7 @@ class DurationConverterHelperTest extends TestCase
 
     public function testGetSconds(): void
     {
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('modulo')
                          ->with($this->time, ConversionFactors::SECONDS_PER_MINUTE)
                          ->willReturn($this->time);

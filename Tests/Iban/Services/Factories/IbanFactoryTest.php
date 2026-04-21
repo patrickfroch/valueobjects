@@ -1,11 +1,14 @@
 <?php
 
 /**
- * @package     valueobjects
  * @version     1.0.0
+ *
  * @since       19.09.22 - 13:23
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -60,21 +63,21 @@ class IbanFactoryTest extends TestCase
     {
         $iban = 'DE79345678901234567890';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertToIban')
                         ->with($iban)
                         ->willReturn($iban);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValid')
                         ->with($iban)
                         ->willReturn(true);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidChecksum')
                         ->with($iban)
                         ->willReturn(true);
 
-        self::assertNotNull($this->factory->createFromString($iban));
+        $this->assertNotNull($this->factory->createFromString($iban));
     }
 }

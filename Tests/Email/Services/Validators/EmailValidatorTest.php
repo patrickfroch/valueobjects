@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       08.08.2022 - 16:10
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -30,42 +32,42 @@ class EmailValidatorTest extends TestCase
 
     public function testisValidReturnTrueIfEmailIsValid(): void
     {
-        self::assertTrue($this->validator->isValid('info@example.org'));
+        $this->assertTrue($this->validator->isValid('info@example.org'));
     }
 
 
     public function testisValidReturnFalseIfEmailEndsWithDot(): void
     {
-        self::assertFalse($this->validator->isValid('info@example.org.'));
+        $this->assertFalse($this->validator->isValid('info@example.org.'));
     }
 
 
     public function testisValidReturnFalseIfEmailStartsWithDot(): void
     {
-        self::assertFalse($this->validator->isValid('.info@example.org'));
+        $this->assertFalse($this->validator->isValid('.info@example.org'));
     }
 
 
     public function testisValidReturnFalseIfEmailHasNoDotInDomain(): void
     {
-        self::assertFalse($this->validator->isValid('info@example-org'));
+        $this->assertFalse($this->validator->isValid('info@example-org'));
     }
 
 
     public function testisValidReturnFalseIfEmailHasNoAt(): void
     {
-        self::assertFalse($this->validator->isValid('info-example.org'));
+        $this->assertFalse($this->validator->isValid('info-example.org'));
     }
 
 
     public function testisValidReturnFalseIfEmailStartWithAt(): void
     {
-        self::assertFalse($this->validator->isValid('@info-example.org'));
+        $this->assertFalse($this->validator->isValid('@info-example.org'));
     }
 
 
     public function testisValidReturnFalseIfEmailEndsWithAt(): void
     {
-        self::assertFalse($this->validator->isValid('info-example.org@'));
+        $this->assertFalse($this->validator->isValid('info-example.org@'));
     }
 }

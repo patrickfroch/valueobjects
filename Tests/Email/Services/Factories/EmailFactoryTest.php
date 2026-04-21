@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       08.08.2022 - 15:58
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -43,7 +45,7 @@ class EmailFactoryTest extends TestCase
 
     public function testCreateEmailFromStringReturnObject(): void
     {
-        $this->validator->expects(self::once())->method('isValid')->with('info@example.org')->willReturn(true);
-        self::assertNotNull($this->factory->createFromString('info@example.org'));
+        $this->validator->expects($this->once())->method('isValid')->with('info@example.org')->willReturn(true);
+        $this->assertNotNull($this->factory->createFromString('info@example.org'));
     }
 }

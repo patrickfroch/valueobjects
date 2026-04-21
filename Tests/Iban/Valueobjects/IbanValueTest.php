@@ -1,13 +1,20 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * @package     valueobjects
  * @version     1.0.0
+ *
  * @since       19.09.22 - 13:51
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
+
 namespace Esit\Valueobjects\Tests\Iban\Valueobjects;
 
 use Esit\Valueobjects\Classes\Iban\Exceptions\NotAValidIbanException;
@@ -58,12 +65,12 @@ class IbanValueTest extends TestCase
         $iban   = 'DE79 3456 7890 1234 5678 90';
         $clean  = 'DE79345678901234567890';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertToIban')
                         ->with($iban)
                         ->willReturn($clean);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValid')
                         ->with($clean)
                         ->willReturn(false);
@@ -79,17 +86,17 @@ class IbanValueTest extends TestCase
         $iban   = 'DE12 3456 7890 1234 5678 90';
         $clean  = 'DE12345678901234567890';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertToIban')
                         ->with($iban)
                         ->willReturn($clean);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValid')
                         ->with($clean)
                         ->willReturn(true);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidChecksum')
                         ->with($clean)
                         ->willReturn(false);
@@ -105,22 +112,22 @@ class IbanValueTest extends TestCase
         $iban   = 'DE79 3456 7890 1234 5678 90';
         $clean  = 'DE79345678901234567890';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertToIban')
                         ->with($iban)
                         ->willReturn($clean);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValid')
                         ->with($clean)
                         ->willReturn(true);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidChecksum')
                         ->with($clean)
                         ->willReturn(true);
 
-        self::assertNotNull(IbanValue::fromString($iban, $this->converter, $this->validator));
+        $this->assertNotNull(IbanValue::fromString($iban, $this->converter, $this->validator));
     }
 
 
@@ -129,48 +136,48 @@ class IbanValueTest extends TestCase
         $iban   = 'DE79 3456 7890 1234 5678 90';
         $clean  = 'DE79345678901234567890';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertToIban')
                         ->with($iban)
                         ->willReturn($clean);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValid')
                         ->with($clean)
                         ->willReturn(true);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidChecksum')
                         ->with($clean)
                         ->willReturn(true);
 
         $value = IbanValue::fromString($iban, $this->converter, $this->validator);
-        self::assertSame($clean, $value->value());
+        $this->assertSame($clean, $value->value());
     }
 
 
-    public function test__toStringIbanWithoutSpaces(): void
+    public function testToStringIbanWithoutSpaces(): void
     {
         $iban   = 'DE79 3456 7890 1234 5678 90';
         $clean  = 'DE79345678901234567890';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertToIban')
                         ->with($iban)
                         ->willReturn($clean);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValid')
                         ->with($clean)
                         ->willReturn(true);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidChecksum')
                         ->with($clean)
                         ->willReturn(true);
 
         $value = IbanValue::fromString($iban, $this->converter, $this->validator);
-        self::assertSame($clean, (string)$value);
+        $this->assertSame($clean, (string) $value);
     }
 
 
@@ -179,27 +186,27 @@ class IbanValueTest extends TestCase
         $iban   = 'DE79 3456 7890 1234 5678 90';
         $clean  = 'DE79345678901234567890';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertToIban')
                         ->with($clean)
                         ->willReturn($clean);
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('convertToFormated')
                         ->with($clean)
                         ->willReturn($iban);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValid')
                         ->with($clean)
                         ->willReturn(true);
 
-        $this->validator->expects(self::once())
+        $this->validator->expects($this->once())
                         ->method('isValidChecksum')
                         ->with($clean)
                         ->willReturn(true);
 
         $value = IbanValue::fromString($clean, $this->converter, $this->validator);
-        self::assertSame($iban, $value->getFormatedValue());
+        $this->assertSame($iban, $value->getFormatedValue());
     }
 }

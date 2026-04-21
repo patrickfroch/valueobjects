@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       11.03.2024 - 14:14
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
  * @license     LGPL
  */
@@ -14,8 +16,8 @@ declare(strict_types=1);
 namespace Esit\Valueobjects\Tests\Duration\Valueobjects;
 
 use Esit\Valueobjects\Classes\Duration\Services\Calculators\DurationCalculator;
-use Esit\Valueobjects\Classes\Duration\Services\Parser\DurationParser;
 use Esit\Valueobjects\Classes\Duration\Services\Factories\DurationFactory;
+use Esit\Valueobjects\Classes\Duration\Services\Parser\DurationParser;
 use Esit\Valueobjects\Classes\Duration\Valueobjects\DurationValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -106,7 +108,7 @@ class DurationValueTest extends TestCase
     {
         $expected = '01:02:03';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('parseString')
                         ->with($this->duration, 'H:i:s', '-')
                         ->willReturn($expected);
@@ -140,7 +142,7 @@ class DurationValueTest extends TestCase
     {
         $expected = '01:02:03';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('parseString')
                         ->with($this->duration, $this->format, '-')
                         ->willReturn($expected);
@@ -155,7 +157,7 @@ class DurationValueTest extends TestCase
         $format     = 'H-i_s';
         $prefix     = '#';
 
-        $this->converter->expects(self::once())
+        $this->converter->expects($this->once())
                         ->method('parseString')
                         ->with($this->duration, $format, $prefix)
                         ->willReturn($expected);
@@ -168,12 +170,12 @@ class DurationValueTest extends TestCase
     {
         $expected = 12;
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('add')
                          ->with($this->time, $this->time)
                          ->willReturn($expected);
 
-        $this->factory->expects(self::once())
+        $this->factory->expects($this->once())
                       ->method('createDurationFromInt')
                       ->with($expected)
                       ->willReturn($this->duration);
@@ -186,12 +188,12 @@ class DurationValueTest extends TestCase
     {
         $expected = 12;
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('subtract')
                          ->with($this->time, $this->time)
                          ->willReturn($expected);
 
-        $this->factory->expects(self::once())
+        $this->factory->expects($this->once())
                       ->method('createDurationFromInt')
                       ->with($expected)
                       ->willReturn($this->duration);
@@ -205,12 +207,12 @@ class DurationValueTest extends TestCase
         $operand    = 12;
         $expected   = $this->time + $operand;
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('multiply')
                          ->with($this->time, $operand)
                          ->willReturn($expected);
 
-        $this->factory->expects(self::once())
+        $this->factory->expects($this->once())
                       ->method('createDurationFromInt')
                       ->with($expected)
                       ->willReturn($this->duration);
@@ -224,12 +226,12 @@ class DurationValueTest extends TestCase
         $operand    = 12;
         $expected   = $this->time + $operand;
 
-        $this->calculator->expects(self::once())
+        $this->calculator->expects($this->once())
                          ->method('divide')
                          ->with($this->time, $operand)
                          ->willReturn($expected);
 
-        $this->factory->expects(self::once())
+        $this->factory->expects($this->once())
                       ->method('createDurationFromInt')
                       ->with($expected)
                       ->willReturn($this->duration);

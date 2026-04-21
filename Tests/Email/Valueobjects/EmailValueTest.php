@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       08.08.2022 - 16:03
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -37,16 +39,16 @@ class EmailValueTest extends TestCase
     public function testFromStringReturnObjectIfEmailIsValid(): void
     {
         $mail = 'info@example.org';
-        $this->validator->expects(self::once())->method('isValid')->with($mail)->willReturn(true);
+        $this->validator->expects($this->once())->method('isValid')->with($mail)->willReturn(true);
         $email = EmailValue::fromString($mail, $this->validator);
-        self::assertNotNull($email);
+        $this->assertNotNull($email);
     }
 
 
     public function testFromStringThrowExceptionIfEmailIsNotValid(): void
     {
         $mail = 'info@example.org-';
-        $this->validator->expects(self::once())->method('isValid')->with($mail)->willReturn(false);
+        $this->validator->expects($this->once())->method('isValid')->with($mail)->willReturn(false);
         $this->expectException(NotAValidEmailException::class);
         $this->expectExceptionMessage('string is not a valid email');
         EmailValue::fromString($mail, $this->validator);
@@ -56,17 +58,17 @@ class EmailValueTest extends TestCase
     public function testValueReturnValue(): void
     {
         $mail = 'info@example.org';
-        $this->validator->expects(self::once())->method('isValid')->with($mail)->willReturn(true);
+        $this->validator->expects($this->once())->method('isValid')->with($mail)->willReturn(true);
         $email = EmailValue::fromString($mail, $this->validator);
-        self::assertSame($mail, $email->value());
+        $this->assertSame($mail, $email->value());
     }
 
 
     public function testToStringReturnValue(): void
     {
         $mail = 'info@example.org';
-        $this->validator->expects(self::once())->method('isValid')->with($mail)->willReturn(true);
+        $this->validator->expects($this->once())->method('isValid')->with($mail)->willReturn(true);
         $email = EmailValue::fromString($mail, $this->validator);
-        self::assertSame($mail, (string)$email);
+        $this->assertSame($mail, (string) $email);
     }
 }

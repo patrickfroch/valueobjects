@@ -2,10 +2,12 @@
 
 /**
  * @since       08.09.2024 - 17:45
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
- * @license     EULA
  */
 
 declare(strict_types=1);
@@ -23,9 +25,18 @@ use Esit\Valueobjects\Classes\Database\Valueobjects\TablenameValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-enum TestDatabase implements DatabasenamesInterface { case test; }
-enum TestTable implements TablenamesInterface { case test; }
-enum TestField implements FieldnamesInterface { case test;}
+enum TestDatabase implements DatabasenamesInterface
+{
+    case test;
+}
+enum TestTable implements TablenamesInterface
+{
+    case test;
+}
+enum TestField implements FieldnamesInterface
+{
+    case test;
+}
 
 class DatabasenameFactoryTest extends TestCase
 {
@@ -86,11 +97,12 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateDatabasenameFromString(): void
     {
-        $this->databasenameValidator->expects(self::once())
+        $this->databasenameValidator->expects($this->once())
                                     ->method('validate')
                                     ->willReturn(true);
 
@@ -100,11 +112,12 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateDatabasenameFromInterface(): void
     {
-        $this->databasenameValidator->expects(self::once())
+        $this->databasenameValidator->expects($this->once())
                                     ->method('validate')
                                     ->willReturn(true);
 
@@ -114,17 +127,18 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateFieldnameFromStringWithString(): void
     {
         $tablename = 'tl_example';
 
-        $this->tablenameValidator->expects(self::once())
+        $this->tablenameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
-        $this->fieldnameValidator->expects(self::once())
+        $this->fieldnameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
@@ -134,14 +148,15 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateFieldnameFromStringWithTablenaemValue(): void
     {
-        $this->tablenameValidator->expects(self::never())
+        $this->tablenameValidator->expects($this->never())
                                  ->method('validate');
 
-        $this->fieldnameValidator->expects(self::once())
+        $this->fieldnameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
@@ -151,15 +166,16 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateFieldnameFromInterfaceWithTablenameInterface(): void
     {
-        $this->tablenameValidator->expects(self::once())
+        $this->tablenameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
-        $this->fieldnameValidator->expects(self::once())
+        $this->fieldnameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
@@ -169,14 +185,15 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateFieldnameFromInterfaceWithTablenameValue(): void
     {
-        $this->tablenameValidator->expects(self::never())
+        $this->tablenameValidator->expects($this->never())
                                  ->method('validate');
 
-        $this->fieldnameValidator->expects(self::once())
+        $this->fieldnameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
@@ -186,15 +203,16 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateFieldnameFromStringOrInterfaceCreateFromInterface(): void
     {
-        $this->tablenameValidator->expects(self::once())
+        $this->tablenameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
-        $this->fieldnameValidator->expects(self::once())
+        $this->fieldnameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
@@ -206,14 +224,15 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateFieldnameFromStringOrInterfaceCreateFromString(): void
     {
-        $this->tablenameValidator->expects(self::never())
+        $this->tablenameValidator->expects($this->never())
                                  ->method('validate');
 
-        $this->fieldnameValidator->expects(self::once())
+        $this->fieldnameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
@@ -225,11 +244,12 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateTablenameFromString(): void
     {
-        $this->tablenameValidator->expects(self::once())
+        $this->tablenameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
@@ -239,11 +259,12 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateTablenameFromInterface(): void
     {
-        $this->tablenameValidator->expects(self::once())
+        $this->tablenameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
@@ -253,11 +274,12 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateTablenameFromStringOrInterfaceCreateFromInterface(): void
     {
-        $this->tablenameValidator->expects(self::once())
+        $this->tablenameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 
@@ -267,11 +289,12 @@ class DatabasenameFactoryTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testCreateTablenameFromStringOrInterfaceCreateFromString(): void
     {
-        $this->tablenameValidator->expects(self::once())
+        $this->tablenameValidator->expects($this->once())
                                  ->method('validate')
                                  ->willReturn(true);
 

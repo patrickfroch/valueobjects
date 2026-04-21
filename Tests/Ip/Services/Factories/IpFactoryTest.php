@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       09.08.2022 - 14:08
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -42,7 +44,7 @@ class IpFactoryTest extends TestCase
 
     public function testCreateIpFromStringReturnObject(): void
     {
-        $this->validator->expects(self::once())->method('isValid')->with('127.0.0.1')->willReturn(true);
-        self::assertNotNull($this->factory->createFromString('127.0.0.1'));
+        $this->validator->expects($this->once())->method('isValid')->with('127.0.0.1')->willReturn(true);
+        $this->assertNotNull($this->factory->createFromString('127.0.0.1'));
     }
 }

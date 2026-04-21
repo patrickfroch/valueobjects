@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       06.08.2022 - 13:00
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -42,17 +44,17 @@ class IsbnFactoryTest extends TestCase
     public function testCreateIsbn10FromStringReturnObject(): void
     {
         $value = '3827330149';
-        $this->validator->expects(self::once())->method('isValidIsbn10')->with($value)->willReturn(true);
-        $this->validator->expects(self::once())->method('validateCheckSum10')->with($value)->willReturn(true);
-        self::assertNotNull($this->factory->createIsbn10FromString($value));
+        $this->validator->expects($this->once())->method('isValidIsbn10')->with($value)->willReturn(true);
+        $this->validator->expects($this->once())->method('validateCheckSum10')->with($value)->willReturn(true);
+        $this->assertNotNull($this->factory->createIsbn10FromString($value));
     }
 
 
     public function testCreateIsbn13FromStringReturnObject(): void
     {
         $value = '978-3827330147';
-        $this->validator->expects(self::once())->method('isValidIsbn13')->with($value)->willReturn(true);
-        $this->validator->expects(self::once())->method('validateCheckSum13')->with($value)->willReturn(true);
-        self::assertNotNull($this->factory->createIsbn13FromString($value));
+        $this->validator->expects($this->once())->method('isValidIsbn13')->with($value)->willReturn(true);
+        $this->validator->expects($this->once())->method('validateCheckSum13')->with($value)->willReturn(true);
+        $this->assertNotNull($this->factory->createIsbn13FromString($value));
     }
 }
