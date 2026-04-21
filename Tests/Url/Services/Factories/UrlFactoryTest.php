@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       08.08.2022 - 14:06
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -43,8 +45,8 @@ class UrlFactoryTest extends TestCase
 
     public function testCreateUrlFromString(): void
     {
-        $this->validator->expects(self::once())->method('isValid')->with('dav://example.org/')->willReturn(true);
+        $this->validator->expects($this->once())->method('isValid')->with('dav://example.org/')->willReturn(true);
 
-        self::assertNotNull($this->factory->createFromString('dav://example.org/', true, 'dav'));
+        $this->assertNotNull($this->factory->createFromString('dav://example.org/', true, 'dav'));
     }
 }

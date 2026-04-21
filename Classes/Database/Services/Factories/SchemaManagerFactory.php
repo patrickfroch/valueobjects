@@ -8,7 +8,6 @@
  * @see         http://easySolutionsIT.de
  *
  * @copyright   e@sy Solutions IT 2024
- * @license     EULA
  */
 
 declare(strict_types=1);
@@ -33,19 +32,12 @@ class SchemaManagerFactory
     /**
      * Erzeugt einen SchemaManager.
      *
-     * @return AbstractSchemaManager
+     * @return AbstractSchemaManager<\Doctrine\DBAL\Platforms\AbstractPlatform>
      *
      * @throws \Doctrine\DBAL\Exception
-     *
-     * @phpstan-ignore-next-line
      */
     public function getSchemaManager(): AbstractSchemaManager
     {
-        if (\method_exists($this->connection, 'createSchemaManager')) {
-            return $this->connection->createSchemaManager();
-        }
-
-        // Fallback für Contao 4.*
-        return $this->connection->getSchemaManager();
+        return $this->connection->createSchemaManager();
     }
 }

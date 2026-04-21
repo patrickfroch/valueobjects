@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       03.08.2022 - 11:46
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2022
  * @license     LGPL
  */
@@ -51,10 +53,10 @@ final class MoneyCalculatorTest extends TestCase
 
     public function testAddThrowExceptionIfDecimalPlacesNotTheSame(): void
     {
-        $this->moneyOne->expects(self::once())->method('getDecimalPlaces')->willReturn(2);
-        $this->moneyTwo->expects(self::once())->method('getDecimalPlaces')->willReturn(3);
-        $this->moneyOne->expects(self::never())->method('value');
-        $this->moneyTwo->expects(self::never())->method('value');
+        $this->moneyOne->expects($this->once())->method('getDecimalPlaces')->willReturn(2);
+        $this->moneyTwo->expects($this->once())->method('getDecimalPlaces')->willReturn(3);
+        $this->moneyOne->expects($this->never())->method('value');
+        $this->moneyTwo->expects($this->never())->method('value');
         $this->expectException(NotSameDecimalPlacesException::class);
         $this->expectExceptionMessage('money objects must have the same decimal place count');
         $this->calculator->add($this->moneyOne, $this->moneyTwo);
@@ -63,18 +65,18 @@ final class MoneyCalculatorTest extends TestCase
 
     public function testAddTakeTowObjectsAndReturnsTheResult(): void
     {
-        $this->moneyOne->expects(self::once())->method('value')->willReturn(12);
-        $this->moneyTwo->expects(self::once())->method('value')->willReturn(24);
-        self::assertSame(36, $this->calculator->add($this->moneyOne, $this->moneyTwo));
+        $this->moneyOne->expects($this->once())->method('value')->willReturn(12);
+        $this->moneyTwo->expects($this->once())->method('value')->willReturn(24);
+        $this->assertSame(36, $this->calculator->add($this->moneyOne, $this->moneyTwo));
     }
 
 
     public function testSubstractThrowExceptionIfDecimalPlacesNotTheSame(): void
     {
-        $this->moneyOne->expects(self::never())->method('value');
-        $this->moneyTwo->expects(self::never())->method('value');
-        $this->moneyOne->expects(self::once())->method('getDecimalPlaces')->willReturn(2);
-        $this->moneyTwo->expects(self::once())->method('getDecimalPlaces')->willReturn(3);
+        $this->moneyOne->expects($this->never())->method('value');
+        $this->moneyTwo->expects($this->never())->method('value');
+        $this->moneyOne->expects($this->once())->method('getDecimalPlaces')->willReturn(2);
+        $this->moneyTwo->expects($this->once())->method('getDecimalPlaces')->willReturn(3);
         $this->expectException(NotSameDecimalPlacesException::class);
         $this->expectExceptionMessage('money objects must have the same decimal place count');
         $this->calculator->substract($this->moneyOne, $this->moneyTwo);
@@ -83,33 +85,33 @@ final class MoneyCalculatorTest extends TestCase
 
     public function testSubstractTakeTowObjectsAndReturnsTheResult(): void
     {
-        $this->moneyOne->expects(self::once())->method('value')->willReturn(12);
-        $this->moneyTwo->expects(self::once())->method('value')->willReturn(24);
-        self::assertSame(-12, $this->calculator->substract($this->moneyOne, $this->moneyTwo));
+        $this->moneyOne->expects($this->once())->method('value')->willReturn(12);
+        $this->moneyTwo->expects($this->once())->method('value')->willReturn(24);
+        $this->assertSame(-12, $this->calculator->substract($this->moneyOne, $this->moneyTwo));
     }
 
 
     public function testMultiplyTakeAnObjectAndANumberAndReturnsTheResult(): void
     {
-        $this->moneyOne->expects(self::once())->method('value')->willReturn(12);
-        $this->moneyTwo->expects(self::never())->method('value');
-        self::assertSame(24, $this->calculator->multiply($this->moneyOne, 2));
+        $this->moneyOne->expects($this->once())->method('value')->willReturn(12);
+        $this->moneyTwo->expects($this->never())->method('value');
+        $this->assertSame(24, $this->calculator->multiply($this->moneyOne, 2));
     }
 
 
     public function testMultiplyReturnZeroIfIntIsZero(): void
     {
-        $this->moneyOne->expects(self::once())->method('value')->willReturn(12);
-        $this->moneyTwo->expects(self::never())->method('value');
-        self::assertSame(0, $this->calculator->multiply($this->moneyOne, 0));
+        $this->moneyOne->expects($this->once())->method('value')->willReturn(12);
+        $this->moneyTwo->expects($this->never())->method('value');
+        $this->assertSame(0, $this->calculator->multiply($this->moneyOne, 0));
     }
 
 
     public function testMultiplyReturnZeroIfMoneyIsZero(): void
     {
-        $this->moneyOne->expects(self::once())->method('value')->willReturn(0);
-        $this->moneyTwo->expects(self::never())->method('value');
-        self::assertSame(0, $this->calculator->multiply($this->moneyOne, 2));
+        $this->moneyOne->expects($this->once())->method('value')->willReturn(0);
+        $this->moneyTwo->expects($this->never())->method('value');
+        $this->assertSame(0, $this->calculator->multiply($this->moneyOne, 2));
     }
 
 
@@ -117,24 +119,24 @@ final class MoneyCalculatorTest extends TestCase
     {
         $this->expectException(DivisionByZeroException::class);
         $this->expectExceptionMessage('division by zero not possible');
-        $this->moneyOne->expects(self::never())->method('value');
-        $this->moneyTwo->expects(self::never())->method('value');
-        self::assertSame(0, $this->calculator->divide($this->moneyOne, 0));
+        $this->moneyOne->expects($this->never())->method('value');
+        $this->moneyTwo->expects($this->never())->method('value');
+        $this->assertSame(0, $this->calculator->divide($this->moneyOne, 0));
     }
 
 
     public function testDivideReturnZeroIfMoneyIsZero(): void
     {
-        $this->moneyOne->expects(self::once())->method('value')->willReturn(0);
-        $this->moneyTwo->expects(self::never())->method('value');
-        self::assertSame(0, $this->calculator->divide($this->moneyOne, 2));
+        $this->moneyOne->expects($this->once())->method('value')->willReturn(0);
+        $this->moneyTwo->expects($this->never())->method('value');
+        $this->assertSame(0, $this->calculator->divide($this->moneyOne, 2));
     }
 
 
     public function testDivideReturnIntIfMoneyIsNotZero(): void
     {
-        $this->moneyOne->expects(self::once())->method('value')->willReturn(12);
-        $this->moneyTwo->expects(self::never())->method('value');
-        self::assertSame(6, $this->calculator->divide($this->moneyOne, 2));
+        $this->moneyOne->expects($this->once())->method('value')->willReturn(12);
+        $this->moneyTwo->expects($this->never())->method('value');
+        $this->assertSame(6, $this->calculator->divide($this->moneyOne, 2));
     }
 }

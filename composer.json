@@ -1,27 +1,31 @@
 {
-    "name": "esit/valueobjects",
+    "name": "patrickfroch/valueobjects",
     "description": "Bei diesem Paket handelt es sich um eine Sammlung an Wertobjekten. Mit den Wertobjekten kann primitiven Datentypen eine Bedeutung verliehen werden. Es kann so sichergestellt werden, dass es sich z.B. bei einem String um einen Geldbetrag, eine E-Mail-Adresse, IBAN, ISBN, ... handelt.",
     "license": "LGPL-3.0-or-later",
     "type": "library",
     "authors": [
         {
             "name": "Patrick Froch",
-            "email": "info@easySolutionsIT.de",
-            "homepage": "https://easySolutionsIT.de",
+            "email": "hallo@patrick-froch.de",
+            "homepage": "https://patrick-froch.de",
             "role": "Developer"
         }
     ],
     "support": {
-        "email": "info@easySolutionsIT.de"
+        "email": "hallo@patrick-froch.de",
+        "issues": "https://github.com/patrickfroch/valueobjects/issues",
+        "docs": "https://github.com/patrickfroch/valueobjects/blob/main/README.md"
     },
     "require": {
-        "php": "~8.1",
-        "contao/core-bundle": "^4.13 || ~5.0",
-        "ext-bcmath": "*"
+        "php": "^8.1",
+        "contao/core-bundle": "~4.13|^5.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~9.6",
-        "symplify/easy-coding-standard": "^12.1"
+        "contao/test-case": "~4.13|^5.0",
+        "phpunit/phpunit": "^9.5|^12.0",
+        "phpstan/phpstan": "^2.1",
+        "symplify/easy-coding-standard": "^13.0",
+        "squizlabs/php_codesniffer": "^4.0"
     },
     "autoload": {
         "psr-4": {

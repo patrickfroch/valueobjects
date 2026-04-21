@@ -1,12 +1,13 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       12.03.2024 - 15:46
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
- * @license     EULA
  */
 
 declare(strict_types=1);
@@ -14,11 +15,11 @@ declare(strict_types=1);
 namespace Duration\Integration;
 
 use Esit\Valueobjects\Classes\Duration\Services\Calculators\DurationCalculator;
+use Esit\Valueobjects\Classes\Duration\Services\Converter\DurationConverter;
+use Esit\Valueobjects\Classes\Duration\Services\Factories\DurationFactory;
 use Esit\Valueobjects\Classes\Duration\Services\Helper\DurationConverterHelper;
 use Esit\Valueobjects\Classes\Duration\Services\Helper\DurationParserHelper;
 use Esit\Valueobjects\Classes\Duration\Services\Parser\DurationParser;
-use Esit\Valueobjects\Classes\Duration\Services\Factories\DurationFactory;
-use Esit\Valueobjects\Classes\Duration\Services\Converter\DurationConverter;
 use PHPUnit\Framework\TestCase;
 
 class IntegrationTest extends TestCase
@@ -34,7 +35,7 @@ class IntegrationTest extends TestCase
     /**
      * @var DurationFactory
      */
-   private DurationFactory $factory;
+    private DurationFactory $factory;
 
 
     protected function setUp(): void
@@ -86,7 +87,7 @@ class IntegrationTest extends TestCase
 
     public function testGetFormatedMonthAndWeeksAndDays(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
         $time   = 11491200; // 4 Monate, 3 Wochen, 0 Tage
         $value  = $this->factory->createDurationFromInt($time);
 
@@ -96,7 +97,7 @@ class IntegrationTest extends TestCase
 
     public function testGetFormatedYearsAndMonthAndWeeksAndDays(): void
     {
-        self::markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
+        $this->markTestSkipped('Die die Länge eines Montas nicht festgelegt ist, kann dieser Wert nicht pauschal berechnet werden!');
         $time   = 43027200; // 1 Jahr, 4 Monate, 3 Wochen, 0 Tage
         $value  = $this->factory->createDurationFromInt($time);
 

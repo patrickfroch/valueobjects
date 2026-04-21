@@ -2,10 +2,12 @@
 
 /**
  * @since       08.09.2024 - 16:57
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
- * @license     EULA
  */
 
 declare(strict_types=1);
@@ -59,6 +61,7 @@ class DatabasenameValidatorTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testValidateReturnFalseIfNameIsNotFount(): void
@@ -66,7 +69,7 @@ class DatabasenameValidatorTest extends TestCase
         $databasename   = 'example_databasename';
         $databases      = ['test_database', 'my_test_databasename'];
 
-        $this->schemeManager->expects(self::once())
+        $this->schemeManager->expects($this->once())
                             ->method('listDatabases')
                             ->willReturn($databases);
 
@@ -76,6 +79,7 @@ class DatabasenameValidatorTest extends TestCase
 
     /**
      * @return void
+     *
      * @throws \Doctrine\DBAL\Exception
      */
     public function testValidateReturnTrueIfNameIsFount(): void
@@ -83,7 +87,7 @@ class DatabasenameValidatorTest extends TestCase
         $databasename   = 'example_databasename';
         $databases      = ['test_database', 'my_test_databasename', 'example_databasename'];
 
-        $this->schemeManager->expects(self::once())
+        $this->schemeManager->expects($this->once())
                             ->method('listDatabases')
                             ->willReturn($databases);
 

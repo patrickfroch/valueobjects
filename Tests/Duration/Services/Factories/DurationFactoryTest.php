@@ -1,10 +1,12 @@
 <?php
 
 /**
- * @package     valueobjects
  * @since       11.03.2024 - 15:03
+ *
  * @author      Patrick Froch <info@easySolutionsIT.de>
+ *
  * @see         http://easySolutionsIT.de
+ *
  * @copyright   e@sy Solutions IT 2024
  * @license     LGPL
  */
@@ -14,9 +16,9 @@ declare(strict_types=1);
 namespace Esit\Valueobjects\Tests\Duration\Services\Factories;
 
 use Esit\Valueobjects\Classes\Duration\Services\Calculators\DurationCalculator;
-use Esit\Valueobjects\Classes\Duration\Services\Parser\DurationParser;
 use Esit\Valueobjects\Classes\Duration\Services\Factories\DurationFactory;
-use \PHPUnit\Framework\MockObject\MockObject;
+use Esit\Valueobjects\Classes\Duration\Services\Parser\DurationParser;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class DurationFactoryTest extends TestCase
