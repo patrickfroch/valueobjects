@@ -57,26 +57,22 @@ class DurationConverterTest extends EsitTestCase
         $conversionFactorParentUnit = ConversionFactors::SECONDS_PER_HOUR;
         $expected                   = 2;
 
-        $this->addConsecutiveReturn(
-            $this->calculator,
-            'modulo',
-            [$restOfHour, $rest],
-            [
-                [$time, $timeOfHour],
-                [$restOfHour, $conversionFactor]
-            ]
-        );
+        $this->calculator->expects($this->exactly(2))
+                         ->method('modulo')
+                         ->with(...$this->consecutiveParams(
+                             [$time, $timeOfHour],
+                             [$restOfHour, $conversionFactor]
+                         ))
+                         ->willReturnOnConsecutiveCalls($restOfHour, $rest);
 
-        $this->addConsecutiveReturn(
-            $this->calculator,
-            'subtract',
-            [$timeOfHour, $restOfHour, $timeOfMinutes],
-            [
-                [$time, $restOfHour],
-                [$time, $timeOfHour],
-                [$restOfHour, $rest]
-            ]
-        );
+        $this->calculator->expects($this->exactly(3))
+                         ->method('subtract')
+                         ->with(...$this->consecutiveParams(
+                             [$time, $restOfHour],
+                             [$time, $timeOfHour],
+                             [$restOfHour, $rest]
+                         ))
+                         ->willReturnOnConsecutiveCalls($timeOfHour, $restOfHour, $timeOfMinutes);
 
         $this->calculator->expects($this->once())
                          ->method('divide')

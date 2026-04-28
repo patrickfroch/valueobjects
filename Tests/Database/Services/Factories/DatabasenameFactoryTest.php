@@ -22,6 +22,7 @@ use Esit\Valueobjects\Classes\Database\Services\Validators\DatabasenameValidator
 use Esit\Valueobjects\Classes\Database\Services\Validators\FieldnameValidator;
 use Esit\Valueobjects\Classes\Database\Services\Validators\TablenameValidator;
 use Esit\Valueobjects\Classes\Database\Valueobjects\TablenameValue;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -38,6 +39,7 @@ enum TestField implements FieldnamesInterface
     case test;
 }
 
+#[AllowMockObjectsWithoutExpectations]
 class DatabasenameFactoryTest extends TestCase
 {
 
