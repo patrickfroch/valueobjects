@@ -21,9 +21,11 @@ use Esit\Valueobjects\Classes\Iban\Exceptions\NotAValidIbanException;
 use Esit\Valueobjects\Classes\Iban\Services\Converter\IbanConverter;
 use Esit\Valueobjects\Classes\Iban\Services\Validators\IbanValidator;
 use Esit\Valueobjects\Classes\Iban\Valueobjects\IbanValue;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 class IbanValueTest extends TestCase
 {
 

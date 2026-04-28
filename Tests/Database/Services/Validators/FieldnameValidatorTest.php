@@ -12,16 +12,18 @@
 
 declare(strict_types=1);
 
-namespace Database\Services\Validators;
+namespace Esit\Valueobjects\Tests\Database\Services\Validators;
 
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\Column;
 use Esit\Valueobjects\Classes\Database\Services\Factories\SchemaManagerFactory;
 use Esit\Valueobjects\Classes\Database\Services\Validators\FieldnameValidator;
 use Esit\Valueobjects\Classes\Database\Valueobjects\TablenameValue;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 class FieldnameValidatorTest extends TestCase
 {
 

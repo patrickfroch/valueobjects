@@ -20,9 +20,11 @@ use Esit\Valueobjects\Classes\Money\Services\Calculator\MoneyCalculator;
 use Esit\Valueobjects\Classes\Money\Services\Converter\MoneyConverter;
 use Esit\Valueobjects\Classes\Money\Services\Validators\MoneyValidator;
 use Esit\Valueobjects\Classes\Money\Valueobjects\MoneyValue;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 final class MoneyValueTest extends TestCase
 {
 

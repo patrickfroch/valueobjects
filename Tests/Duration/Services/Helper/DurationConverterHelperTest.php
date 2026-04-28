@@ -18,9 +18,11 @@ use Esit\Valueobjects\Classes\Duration\Library\ConversionFactors;
 use Esit\Valueobjects\Classes\Duration\Services\Calculators\DurationCalculator;
 use Esit\Valueobjects\Classes\Duration\Services\Converter\DurationConverter;
 use Esit\Valueobjects\Classes\Duration\Services\Helper\DurationConverterHelper;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 class DurationConverterHelperTest extends TestCase
 {
 

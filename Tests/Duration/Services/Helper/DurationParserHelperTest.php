@@ -17,9 +17,11 @@ namespace Esit\Valueobjects\Tests\Duration\Services\Helper;
 use Esit\Valueobjects\Classes\Duration\Library\DurationFormatParts;
 use Esit\Valueobjects\Classes\Duration\Services\Helper\DurationConverterHelper;
 use Esit\Valueobjects\Classes\Duration\Services\Helper\DurationParserHelper;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 class DurationParserHelperTest extends TestCase
 {
 
