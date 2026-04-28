@@ -26,15 +26,6 @@ class EsitTestCase extends ContaoTestCase
 
 
     /**
-     * @param $name
-     */
-    public function __construct($name = '')
-    {
-        parent::__construct($name);
-    }
-
-
-    /**
      * setup the environment
      */
     protected function setUp(): void
@@ -51,113 +42,69 @@ class EsitTestCase extends ContaoTestCase
 
 
     /**
-     * Ersatz für withConsecutive(), das in PHPUnit 9 deprecated ist!
-     * Es wird bei jedem Aufruf immer der Wert aus $returnValues zurückgegeben.
-     * @param MockObject $object
-     * @param string $method
-     * @param mixed $returnValue
-     * @param array $expected
-     * @return void
+     * Ersetzt withConsecutive()
+     * @param array ...$args
+     * @return array
+     * @see https://gist.github.com/ziadoz/370fe63e24f31fd1eb989e7477b9a472
+     *
      * @example
-     *  $expected = [['call-1_value-1', 'call-1_value-2'], ['call-2_value-1', 'call-2_value-2']]
-     *  $this->addConsecutive($this->myMock, 'MethodName', $this->myMock, $expected);
+     * $mock = $this->getMockBuilder(SomeClass::class)->getMock();
+     *
+     * $mock->expects($this->exactly(3))
+     *      ->method('add')
+     *      ->with(... $this->consecutiveParams(
+     *          ['meta'],
+     *          ['title'],
+     *          ['caption'],
+     *          ['alt']
+     *      ))
+     *      ->willReturnOnConsecutiveCalls(
+     *          $meta, '', '', ''
+     *      );
      */
-    protected function addConsecutive(MockObject $object, string $method, mixed $returnValue, array $expected): void
+    public function consecutiveParams(array ...$args): array
     {
-        $matcher = $this->exactly(\count($expected));
+        $callbacks = [];
+        $count = count(max($args));
 
-        $object->expects($matcher)
-               ->method($method)
-               ->with(
-                   $this->callback(
-                       function(... $param) use ($matcher, $expected) {
-                           $count = $matcher->getInvocationCount() - 1;
+        for ($index = 0; $index < $count; $index++) {
+            $returns = [];
 
-                           foreach ($param as $i => $v) {
+            foreach ($args as $arg) {
+                if (! array_is_list($arg)) {
+                    throw new \InvalidArgumentException('Every array must be a list');
+                }
 
-                               $this->assertSame($expected[$count][$i], $v);
-                           }
+                if (! isset($arg[$index])) {
+                    throw new \InvalidArgumentException(sprintf('Every array must contain %d parameters', $count));
+                }
 
-                           return true;
-                       }
-                   )
-               )
-               ->willReturn($returnValue);
-    }
+                $returns[] = $arg[$index];
+            }
 
+            $callbacks[] = $this->callback(new class ($returns) {
+                public function __construct(protected array $returns)
+                {
+                }
 
-    /**
-     * Ersatz für withConsecutive(), das in PHPUnit 9 deprecated ist!
-     * Es wird nichts zurückgegeben.
-     * @param MockObject $object
-     * @param string $method
-     * @param array $expected
-     * @return void
-     * @example
-     *  $expected = [['call-1_value-1', 'call-1_value-2'], ['call-2_value-1', 'call-2_value-2']]
-     *  $this->addConsecutive($this->myMock, 'MethodName', $expected);
-     */
-    protected function addConsecutiveVoid(MockObject $object, string $method,array $expected): void
-    {
-        $matcher = $this->exactly(\count($expected));
+                public function __invoke(mixed $actual): bool
+                {
+                    if (count($this->returns) === 0) {
+                        return true;
+                    }
 
-        $object->expects($matcher)
-               ->method($method)
-               ->with(
-                   $this->callback(
-                       function(... $param) use ($matcher, $expected) {
-                           $count = $matcher->getInvocationCount() - 1;
+                    $next = array_shift($this->returns);
+                    if ($next instanceof Constraint) {
+                        $next->evaluate($actual);
+                        return true;
+                    }
 
-                           foreach ($param as $i => $v) {
+                    return $actual === $next;
+                }
+            });
+        }
 
-                               $this->assertSame($expected[$count][$i], $v);
-                           }
-
-                           return true;
-                       }
-                   )
-               );
-    }
-
-
-    /**
-     * Ersatz für withConsecutive(), das in PHPUnit 9 deprecated ist!
-     * Es wird bei jedem Aufruf ein Wert aus $returnValues zurückgegeben.
-     * @param MockObject $object
-     * @param string $method
-     * @param mixed $returnValue
-     * @param array $expected
-     * @return void
-     * @example
-     *  $expected = [['call-1_value-1', 'call-1_value-2'], ['call-2_value-1', 'call-2_value-2']]
-     *  $return   = ['retrun1', 'return2'];
-     *  $this->addConsecutive($this->myMock, 'MethodName', $return, $expected);
-     */
-    protected function addConsecutiveReturn(
-        MockObject $object,
-        string $method,
-        mixed $returnValues,
-        array $expected
-    ): void {
-        $matcher = $this->exactly(\count($expected));
-
-        $object->expects($matcher)
-               ->method($method)
-               ->with(
-                   $this->callback(
-                       function(... $param) use ($matcher, $expected) {
-                           $count = $matcher->getInvocationCount() - 1;
-
-                           foreach ($param as $i => $v) {
-
-                               $this->assertSame($expected[$count][$i], $v);
-                           }
-
-                           return true;
-                       }
-                   )
-               )
-               ->willReturnOnConsecutiveCalls(...$returnValues);
+        return $callbacks;
     }
 }
 

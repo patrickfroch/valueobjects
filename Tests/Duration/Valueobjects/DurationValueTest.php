@@ -19,9 +19,11 @@ use Esit\Valueobjects\Classes\Duration\Services\Calculators\DurationCalculator;
 use Esit\Valueobjects\Classes\Duration\Services\Factories\DurationFactory;
 use Esit\Valueobjects\Classes\Duration\Services\Parser\DurationParser;
 use Esit\Valueobjects\Classes\Duration\Valueobjects\DurationValue;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 class DurationValueTest extends TestCase
 {
 

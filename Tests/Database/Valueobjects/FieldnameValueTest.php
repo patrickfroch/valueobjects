@@ -12,15 +12,17 @@
 
 declare(strict_types=1);
 
-namespace Database\Valueobjects;
+namespace Esit\Valueobjects\Tests\Database\Valueobjects;
 
 use Esit\Valueobjects\Classes\Database\Exceptions\NotAValidFieldnameException;
 use Esit\Valueobjects\Classes\Database\Services\Validators\FieldnameValidator;
 use Esit\Valueobjects\Classes\Database\Valueobjects\FieldnameValue;
 use Esit\Valueobjects\Classes\Database\Valueobjects\TablenameValue;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 class FieldnameValueTest extends TestCase
 {
 

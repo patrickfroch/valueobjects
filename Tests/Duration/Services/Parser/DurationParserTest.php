@@ -21,8 +21,10 @@ use Esit\Valueobjects\Classes\Duration\Services\Helper\DurationParserHelper;
 use Esit\Valueobjects\Classes\Duration\Services\Parser\DurationParser;
 use Esit\Valueobjects\Classes\Duration\Valueobjects\DurationValue;
 use Esit\Valueobjects\EsitTestCase;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 
+#[AllowMockObjectsWithoutExpectations]
 class DurationParserTest extends EsitTestCase
 {
 
@@ -94,26 +96,20 @@ class DurationParserTest extends EsitTestCase
               ->method('value')
               ->willReturn($time);
 
-        $this->addConsecutiveReturn(
-            $this->parserHelper,
-            'parseToken',
-            [$time, $time, $time, $time, $time, $time, $time, $time, $time],
-            [
-                // [DurationFormatParts::Y, $time],
-                // [DurationFormatParts::M, $time],
-                // [DurationFormatParts::m, $time],
-                [DurationFormatParts::W, $time],
-                // [DurationFormatParts::w, $time],
-                [DurationFormatParts::D, $time],
-                [DurationFormatParts::d, $time],
-                [DurationFormatParts::H, $time],
-                [DurationFormatParts::h, $time],
-                [DurationFormatParts::I, $time],
-                [DurationFormatParts::i, $time],
-                [DurationFormatParts::S, $time],
-                [DurationFormatParts::s, $time]
-            ]
-        );
+        $this->parserHelper->expects($this->exactly(9))
+                           ->method('parseToken')
+                           ->with(...$this->consecutiveParams(
+                               [DurationFormatParts::W, $time],
+                               [DurationFormatParts::D, $time],
+                               [DurationFormatParts::d, $time],
+                               [DurationFormatParts::H, $time],
+                               [DurationFormatParts::h, $time],
+                               [DurationFormatParts::I, $time],
+                               [DurationFormatParts::i, $time],
+                               [DurationFormatParts::S, $time],
+                               [DurationFormatParts::s, $time]
+                           ))
+                           ->willReturn($time);
 
         $this->assertSame($expected, $this->parser->parseString($value, $format));
     }

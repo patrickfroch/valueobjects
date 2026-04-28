@@ -19,9 +19,11 @@ use Esit\Valueobjects\Classes\Money\Exceptions\MoneyIsEmptyException;
 use Esit\Valueobjects\Classes\Money\Exceptions\NotAValidMoneyStringException;
 use Esit\Valueobjects\Classes\Money\Services\Converter\MoneyConverter;
 use Esit\Valueobjects\Classes\Money\Services\Validators\MoneyValidator;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 final class MoneyConverterTest extends TestCase
 {
 

@@ -17,9 +17,11 @@ namespace Esit\Valueobjects\Tests\Database\Services\Validators;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Esit\Valueobjects\Classes\Database\Services\Factories\SchemaManagerFactory;
 use Esit\Valueobjects\Classes\Database\Services\Validators\DatabasenameValidator;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+#[AllowMockObjectsWithoutExpectations]
 class DatabasenameValidatorTest extends TestCase
 {
 
